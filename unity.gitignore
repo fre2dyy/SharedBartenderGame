@@ -33,3 +33,9 @@ sysinfo.txt
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
+
+ 
+# ============== #
+# Own additional #
+# ============== #
+/Library/shadercompiler-UnityShaderCompiler.exe0.log
