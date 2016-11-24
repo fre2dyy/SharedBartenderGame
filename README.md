@@ -54,3 +54,10 @@ Alles andere kann nachgeschlagen werden, das wichtigste im workflow is jedoch in
 HINWEIS:
 Um Konflikte zwischen Änderungen zu vermeiden, am besten immer regelmäßig einen "pull" vor der Änderung und einen commit nach der Änderung.
 
+
+## 4. Datei ohne Namen? Gitignore! ##
+
+Mit .gitignore lassen sich Ausnahmen beim tracken von files festlegen. Teilweise generiert Unity temporäre Files u.a. beim Öffnen und Schließen des Editors. Falls du noch auf weitere solcher Fälle stößt, bitte hinzufügen, vor allem, wenn sie sich nur auf deinem PC befinden. 
+Eigentlich sollte alles sonst soweit in den folgenden Dateien untergebracht sein:
+- .gitignore
+- unity.gitignore
