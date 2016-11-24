@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DB1C21D6-4634-FEAD-162C-FBDF0535673E}</ProjectGuid>
+    <ProjectGuid>{D1A52C42-1A47-89C0-4EA6-2F1FE93DAC23}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,9 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Own\Scripts\DrinkController.cs" />
-     <Compile Include="Assets\Own\Scripts\PersonContoller.cs" />
-     <Compile Include="Assets\Own\Scripts\UiController.cs" />
+     <Compile Include="Assets\own\Scripts\DrinkController.cs" />
+     <Compile Include="Assets\own\Scripts\PersonContoller.cs" />
+     <Compile Include="Assets\own\Scripts\UiController.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{64FC7667-22C0-0FE4-933F-EB8ECC2AAF08}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{EA5E3CA4-18E8-2429-DEBE-43B0DE9F0E2F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
