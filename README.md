@@ -25,17 +25,19 @@ Konkret in unserem Fall ergibt sich darüber hinaus der Vorteil, dass ein gewisse
 
 Zunächst empfielt sich dieses etwa 10 Minuten dauernde interaktive Tutorial: https://try.github.io/levels/1/challenges/1. Git arbeitet mit Kopien von repositories. Das bedeutet, dass sich hier in diesem Ordner das repository "origin" befinden, also wo alles zusammenkommt. Um damit arbeiten zu können musst du zunächst Git installieren und eine Kopie des repositories lokal auf deinem PC (außerhalb des geteilten Dropbox-Ordners) erstellen. Das geht wie folgt:
 
-1. Git installieren: https://git-scm.com/download/win
-2. Git CMD öffnen.
-3. Folgendes eingeben:
+1. Lokalen Ordner "~\myProject" außerhalb der Dropbox für Unity Projekt erstellen
+2. "~\Dropbox\Game Development Group 2\InitialGitSetup.zip" nach "~\myProject" entpacken
+3. Git installieren: https://git-scm.com/download/win
+4. Git CMD öffnen.
+5. Folgendes eingeben:
 
-~\C:\ $ D:
-~\D:\ $ cd ~\myProject
-~\myProject $ git init
-~\myProject $ git add .
-~\myProject $ git commit -m "first commit"
-~\myProject $ git remote add origin "~\Dropbox\Game Development Group 2\Git\project.git\project.git"
-~\myProject $ git push -u origin master
+	~\C:\ $ D:
+	~\D:\ $ cd ~\myProject
+	~\myProject $ git clone "D:\Dropbox\Game Development Group 2\Git\project.git"
+	
+6. In "~\myProject" sollte sich nun ein Ordner "project" befinden
+7. Den Inhalt von "project" nach "~\myProject" kopieren (alles integrieren, alles ersetzen)
+8. "project"-Ordner löschen (wichtig!)
 
 HINWEIS:
 - "~\myProject" ist dein lokaler Ordner, den du hierfür erstellt hast
