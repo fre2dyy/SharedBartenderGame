@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class DrinkController : MonoBehaviour {
 
-	public Dictionary<string, int> Drink = new Dictionary<string, int>();
+	public Dictionary<string, int> DrinkIngredients = new Dictionary<string, int>();
 
 	// Use this for initialization
 	void Start () {
@@ -22,11 +22,11 @@ public class DrinkController : MonoBehaviour {
 	private void AddIngredient(Transform Ingredient) {
 		int tmp;
 		// Add a shot
-		if (this.Drink.TryGetValue (Ingredient.name, out tmp))
-			this.Drink [Ingredient.name] += 2;
+		if (this.DrinkIngredients.TryGetValue (Ingredient.name, out tmp))
+			this.DrinkIngredients [Ingredient.name] += 2;
 		else
-			this.Drink.Add (Ingredient.name, 2);
+			this.DrinkIngredients.Add (Ingredient.name, 2);
 
-		Debug.Log (this.Drink[Ingredient.name]);
+		Debug.Log (this.DrinkIngredients[Ingredient.name]);
 	}
 }
