@@ -14,8 +14,14 @@ using System.Collections.Generic;
 
 public class Drink : MonoBehaviour {
 
-	public Dictionary<string, int> Ingredients;
 	public string Name;
+	public Dictionary<string, int> Ingredients;
+	private static Dictionary<string, Dictionary<string, int>> drinkList = new Dictionary<string, Dictionary<string, int>>() {
+		{"Beer", new Dictionary<string, int> {{"Beer"}, 1}},
+		{"Cola", new Dictionary<string, int> {{"Cola"}, 1}},
+		{"Diesel", new Dictionary<string, int> {{"Bier", 1}, {"Cola", 1}}},,
+		{"Cuba Libre", new Dictionary<string, int> {{"Cola", 1}, {"Schnapps", 6}}}
+	};
 
 	Drink(string name) {
 		this.Name = name;
@@ -25,19 +31,16 @@ public class Drink : MonoBehaviour {
 	private void SetIngredients() {
 		switch(this.Name) {
 		case "Beer":
-			{
-				this.Ingredients = new Dictionary<string, int> () {
-					{ "Beer", 1 }
-				};
-			}
+			this.Ingredients = drinkList ["Beer"];
+			break;
+		case "Cola":
+			this.Ingredients = drinkList ["Cola"];
+			break;
+		case "Diesel":
+			this.Ingredients = drinkList ["Diesel"];
 			break;
 		case "Cuba Libre":
-			{
-				this.Ingredients = new Dictionary<string, int> () {
-					{ "Cola", 1 },
-					{ "Schnapps", 6 }
-				};
-			}
+			this.Ingredients = drinkList ["Cuba Libre"];
 			break;
 		}
 	}
