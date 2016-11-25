@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 /*
  * Class: Drink
@@ -23,8 +24,8 @@ public class Drink : MonoBehaviour {
 		{"Cuba Libre", new Dictionary<string, int> {{"Cola", 1}, {"Schnapps", 6}}}
 	};
 
-	public static string GetDrinkList() {
-		return drinkList.Keys.ToString();
+	public static string[] GetDrinkList() {
+		return drinkList.Keys.ToArray ();
 	}
 
 	Drink(string name) {

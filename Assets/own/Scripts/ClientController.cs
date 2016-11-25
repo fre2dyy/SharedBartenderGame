@@ -8,7 +8,7 @@ public class ClientController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		GenerateRequest ();		
 	}
 	
 	// Update is called once per frame
@@ -21,10 +21,12 @@ public class ClientController : MonoBehaviour {
 	 */
 	void GetDrink() {
 		Debug.Log ("Got a Drink");
-		GenerateRequest ();
 	}
 
 	void GenerateRequest() {
-		Debug.Log (Drink.GetDrinkList ());
+		// TODO: Perfomance Issue!
+		string[] drinkList = Drink.GetDrinkList ();
+		this.Request =  drinkList[Random.Range(0, drinkList.Length)];
+		Debug.Log (this.Request);
 	}
 }
