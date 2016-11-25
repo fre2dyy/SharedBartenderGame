@@ -16,6 +16,9 @@ public class DrinkController : MonoBehaviour {
 	
 	}
 
+	/*
+	 * Adds ingredients to Equipment objects
+	 */
 	private void AddIngredient() {
 		
 	}

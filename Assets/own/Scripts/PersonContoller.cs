@@ -7,7 +7,7 @@ public class PersonContoller : MonoBehaviour {
 	private RaycastHit hit;
 	private float range = 10f;
 	public UiController Ui;
-	public string Inventory;
+	public Transform Inventory;
 	private Transform Ingredients;
 	private Transform Equipment;
 	private Transform Clients;
@@ -54,15 +54,15 @@ public class PersonContoller : MonoBehaviour {
 	void Interact() {
 		// If click on ingredient always replace inventory with it
 		if (hit.transform.IsChildOf (Ingredients))
-			this.Inventory = hit.transform.name;
+			this.Inventory = hit.transform;
 		
 		if (hit.transform.IsChildOf (Equipment)) {
-			if (String.IsNullOrEmpty (this.Inventory))
-				this.Inventory = hit.transform.name;
+			if (this.Inventory == null)
+				this.Inventory = hit.transform;
 		}
 
 		if (hit.transform.IsChildOf (Clients)) {
-			if (String.IsNullOrEmpty (this.Inventory))
+			if (this.Inventory == null)
 				Debug.Log ("Do you want something from me?");
 		}
 		Debug.Log (this.Inventory + " is now in the inventory.");
