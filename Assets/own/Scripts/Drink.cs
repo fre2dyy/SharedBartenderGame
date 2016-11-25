@@ -17,11 +17,15 @@ public class Drink : MonoBehaviour {
 	public string Name;
 	public Dictionary<string, int> Ingredients;
 	private static Dictionary<string, Dictionary<string, int>> drinkList = new Dictionary<string, Dictionary<string, int>>() {
-		{"Beer", new Dictionary<string, int> {{"Beer"}, 1}},
-		{"Cola", new Dictionary<string, int> {{"Cola"}, 1}},
-		{"Diesel", new Dictionary<string, int> {{"Bier", 1}, {"Cola", 1}}},,
+		{"Beer", new Dictionary<string, int> {{"Beer", 1}}},
+		{"Cola", new Dictionary<string, int> {{"Cola", 1}}},
+		{"Diesel", new Dictionary<string, int> {{"Bier", 1}, {"Cola", 1}}},
 		{"Cuba Libre", new Dictionary<string, int> {{"Cola", 1}, {"Schnapps", 6}}}
 	};
+
+	public static string GetDrinkList() {
+		return drinkList.Keys.ToString();
+	}
 
 	Drink(string name) {
 		this.Name = name;

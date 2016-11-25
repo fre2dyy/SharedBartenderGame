@@ -4,6 +4,7 @@ using System.Collections;
 public class ClientController : MonoBehaviour {
 
 	public string Message;
+	public string Request;
 
 	// Use this for initialization
 	void Start () {
@@ -20,5 +21,10 @@ public class ClientController : MonoBehaviour {
 	 */
 	void GetDrink() {
 		Debug.Log ("Got a Drink");
+		GenerateRequest ();
+	}
+
+	void GenerateRequest() {
+		Debug.Log (Drink.GetDrinkList ());
 	}
 }
