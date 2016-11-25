@@ -24,6 +24,10 @@ public class PersonContoller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		CheckForHit ();
+
+		// Drop Inventory
+		if (Input.GetButtonDown ("Fire2")) 
+			Inventory = null;
 	}
 
 	/*
@@ -57,8 +61,13 @@ public class PersonContoller : MonoBehaviour {
 			this.Inventory = hit.transform;
 		
 		if (hit.transform.IsChildOf (Equipment)) {
-			if (this.Inventory == null)
+			// If nothing in Inventory or other Equipment, pickup this!
+			if (this.Inventory == null || this.Inventory.IsChildOf(Equipment))
 				this.Inventory = hit.transform;
+			// If Ingredient in Inventory, mix it!
+			if(this.Inventory.IsChildOf(Ingredients)) {
+				hit.transform.SendMessage ("AddIngredient", Inventory);
+			}
 		}
 
 		if (hit.transform.IsChildOf (Clients)) {
