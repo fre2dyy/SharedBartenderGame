@@ -28,7 +28,7 @@ public class Drink : MonoBehaviour {
 		return drinkList.Keys.ToArray ();
 	}
 
-	Drink(string name) {
+	public Drink(string name) {
 		this.Name = name;
 		this.SetIngredients ();
 	}

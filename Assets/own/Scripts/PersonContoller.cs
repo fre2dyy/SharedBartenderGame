@@ -74,7 +74,7 @@ public class PersonContoller : MonoBehaviour {
 			if (this.Inventory == null)
 				Debug.Log ("Do you want something from me?");
 			else if (this.Inventory.IsChildOf (Ingredients) || this.Inventory.IsChildOf (Equipment))
-				hit.transform.SendMessage ("GetDrink");
+				hit.transform.SendMessage ("GetDrink", hit.transform);
 		}
 		Debug.Log (this.Inventory + " is now in the inventory.");
 	}
