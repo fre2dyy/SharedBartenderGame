@@ -27,8 +27,10 @@ public class PersonContoller : MonoBehaviour {
 		CheckForHit ();
 
 		// Drop Inventory
-		if (Input.GetButtonDown ("Fire2")) 
+		if (Input.GetButtonDown ("Fire2")) {
 			Inventory = null;
+			Ui.ReceiveItem (null);
+		}
 	}
 
 	/*
@@ -58,15 +60,23 @@ public class PersonContoller : MonoBehaviour {
 	 */
 	void Interact() {
 		// If click on ingredient always replace inventory with it
-		if (hit.transform.IsChildOf (Ingredients))
+		if (hit.transform.IsChildOf (Ingredients)) {
 			this.Inventory = hit.transform;
+			Ui.ReceiveItem (this.Inventory.name);
+		}
 		
 		if (hit.transform.IsChildOf (Equipment)) {
 			// If nothing in Inventory or other Equipment, pickup this!
 			if (this.Inventory == null || this.Inventory.IsChildOf(Equipment))
 				this.Inventory = hit.transform;
+				Ui.ReceiveItem (this.Inventory.name);
 			// If Ingredient in Inventory, mix it!
 			if(this.Inventory.IsChildOf(Ingredients)) {
+				// TODO
+				Dictionary<string, int> drinkI = hit.transform.gameObject.GetComponent<DrinkController> ().DrinkIngredients;
+				foreach(var item in drinkI) {
+					Debug.Log (item.Key + " : " + item.Value);
+				}
 				hit.transform.SendMessage ("AddIngredient", Inventory);
 			}
 		}
@@ -76,7 +86,8 @@ public class PersonContoller : MonoBehaviour {
 				Debug.Log ("Do you want something from me?");
 			}
 			else if (this.Inventory.IsChildOf (Equipment)) {
-				hit.transform.SendMessage("GetDrink", hit.transform.gameObject.GetComponent<DrinkController> ().DrinkIngredients);
+				// Debug.Log (hit.transform.root.gameObject.GetComponent<DrinkController> ().DrinkIngredients);
+				// hit.transform.SendMessage("GetDrink", hit.transform.gameObject.GetComponent<DrinkController> ().DrinkIngredients);
 			}
 			else if (this.Inventory.IsChildOf (Ingredients)){
 				// Send dictionary to ClientController

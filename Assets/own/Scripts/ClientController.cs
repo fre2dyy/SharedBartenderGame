@@ -6,11 +6,15 @@ public class ClientController : MonoBehaviour {
 
 	public string Message;
 	public string Request;
+	private string name;
 	public bool RequestMatch;
+	public UiController Ui;
 
 	// Use this for initialization
 	void Start () {
-		GenerateRequest ();		
+		this.name = this.gameObject.name;
+		Ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UiController>();
+		Invoke ("GenerateRequest", 1);
 	}
 	
 	// Update is called once per frame
@@ -34,18 +38,20 @@ public class ClientController : MonoBehaviour {
 				break;
 			}
 		}
-		Debug.Log ("Got a Drink");
-		if (this.RequestMatch)
-			Debug.Log ("Thank you! :)");
-		else
-			Debug.Log ("That was not what I've ordered! :(");
+		if (this.RequestMatch) {
+			Ui.ReceiveMoney (10);
+			Ui.ReceiveChat(this.name + ": Thank you, sir! :)\n");
+			GenerateRequest ();
+		} else {
+			Ui.ReceiveChat(this.name + ": That was not what I've ordered! :(\n");
+		}
 	}
 
 	void GenerateRequest() {
 		// TODO: Perfomance Issue!
 		string[] drinkList = Drink.GetDrinkList ();
 		this.Request =  drinkList[Random.Range(0, drinkList.Length)];
-		Debug.Log (this.Request);
+		Ui.ReceiveChat (this.name + ": I would like to have a " + this.Request + "\n");
 	}
 
 	void AssessSatisfaction() {
