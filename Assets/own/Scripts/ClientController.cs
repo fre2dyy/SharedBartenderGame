@@ -6,6 +6,7 @@ public class ClientController : MonoBehaviour {
 
 	public string Message;
 	public string Request;
+	public bool RequestMatch;
 
 	// Use this for initialization
 	void Start () {
@@ -20,14 +21,24 @@ public class ClientController : MonoBehaviour {
 	/*
 	 * Will be called when Barkeeper gives a Drink to the client
 	 */
-	void GetDrink(Transform mixedDrink) {
-		// Check if Ingredients from DrinkController match Ingredients of requested Drink
+	void GetDrink(Dictionary<string, int> receivedDrink) {
+		this.RequestMatch = false;
 		Drink targetDrink = new Drink(this.Request);
+		// Check if Ingredients from DrinkController match Ingredients of requested Drink
 		foreach(var item in targetDrink.Ingredients) {
-			Debug.Log (item.Key);
+			int amount;
+			if (receivedDrink.TryGetValue (item.Key, out amount)) {
+				this.RequestMatch = true;
+			} else {
+				this.RequestMatch = false;
+				break;
+			}
 		}
 		Debug.Log ("Got a Drink");
-		Debug.Log (mixedDrink.GetComponent);
+		if (this.RequestMatch)
+			Debug.Log ("Thank you! :)");
+		else
+			Debug.Log ("That was not what I've ordered! :(");
 	}
 
 	void GenerateRequest() {

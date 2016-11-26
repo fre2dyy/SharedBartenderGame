@@ -20,7 +20,7 @@ public class Drink : MonoBehaviour {
 	private static Dictionary<string, Dictionary<string, int>> drinkList = new Dictionary<string, Dictionary<string, int>>() {
 		{"Beer", new Dictionary<string, int> {{"Beer", 1}}},
 		{"Cola", new Dictionary<string, int> {{"Cola", 1}}},
-		{"Diesel", new Dictionary<string, int> {{"Bier", 1}, {"Cola", 1}}},
+		{"Diesel", new Dictionary<string, int> {{"Beer", 1}, {"Cola", 1}}},
 		{"Cuba Libre", new Dictionary<string, int> {{"Cola", 1}, {"Schnapps", 6}}}
 	};
 

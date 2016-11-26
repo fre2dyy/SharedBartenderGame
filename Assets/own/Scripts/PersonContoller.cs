@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class PersonContoller : MonoBehaviour {
 
@@ -71,10 +72,17 @@ public class PersonContoller : MonoBehaviour {
 		}
 
 		if (hit.transform.IsChildOf (Clients)) {
-			if (this.Inventory == null)
+			if (this.Inventory == null) {
 				Debug.Log ("Do you want something from me?");
-			else if (this.Inventory.IsChildOf (Ingredients) || this.Inventory.IsChildOf (Equipment))
-				hit.transform.SendMessage ("GetDrink", hit.transform);
+			}
+			else if (this.Inventory.IsChildOf (Equipment)) {
+				hit.transform.SendMessage("GetDrink", hit.transform.gameObject.GetComponent<DrinkController> ().DrinkIngredients);
+			}
+			else if (this.Inventory.IsChildOf (Ingredients)){
+				// Send dictionary to ClientController
+				hit.transform.SendMessage("GetDrink", new Dictionary<string, int>() {{this.Inventory.name, 1}});
+			}
+				// hit.transform.SendMessage ("GetDrink", hit.transform);
 		}
 		Debug.Log (this.Inventory + " is now in the inventory.");
 	}
