@@ -86,8 +86,7 @@ public class PersonContoller : MonoBehaviour {
 				Debug.Log ("Do you want something from me?");
 			}
 			else if (this.Inventory.IsChildOf (Equipment)) {
-				// Debug.Log (hit.transform.root.gameObject.GetComponent<DrinkController> ().DrinkIngredients);
-				// hit.transform.SendMessage("GetDrink", hit.transform.gameObject.GetComponent<DrinkController> ().DrinkIngredients);
+				hit.transform.SendMessage("GetDrink", Inventory.GetComponent<DrinkController> ().DrinkIngredients);
 			}
 			else if (this.Inventory.IsChildOf (Ingredients)){
 				// Send dictionary to ClientController
