@@ -28,7 +28,7 @@ public class PersonContoller : MonoBehaviour {
 
 		// Drop Inventory
 		if (Input.GetButtonDown ("Fire2")) {
-			this.DropItem ();
+			this.dropItem ();
 		}
 	}
 
@@ -60,54 +60,84 @@ public class PersonContoller : MonoBehaviour {
 	void Interact() {
 		// If click on ingredient always replace inventory with it
 		if (hit.transform.IsChildOf (Ingredients)) {
-			this.Inventory = hit.transform;
-			Ui.ReceiveItem (this.Inventory.name);
+			this.pickupIngredient ();
 		}
 
 		// If hit Equipment
 		if (hit.transform.IsChildOf (Equipment)) {
-			// If nothing in Inventory or other Equipment, pickup this!
-			if (this.Inventory == null || this.Inventory.IsChildOf(Equipment))
-				this.Inventory = hit.transform;
-				Ui.ReceiveItem (this.Inventory.name);
-			// If Ingredient in Inventory, mix it!
-			if(this.Inventory.IsChildOf(Ingredients)) {
-				// TODO
-				Dictionary<string, int> DrinkIngredients = hit.transform.gameObject.GetComponent<DrinkController> ().DrinkIngredients;
-				foreach(var item in DrinkIngredients) {
-					Debug.Log (item.Key + " : " + item.Value);
-				}
-				hit.transform.SendMessage ("AddIngredient", Inventory);
-			}
+			this.interactEquipment ();
 		}
 
 		if (hit.transform.IsChildOf (Clients)) {
-			if (this.Inventory == null) {
-				Debug.Log ("Do you want something from me?");
-			}
-			else if (this.Inventory.IsChildOf (Equipment)) {
-				Dictionary<string, int> DrinkIngredients = Inventory.GetComponent<DrinkController> ().DrinkIngredients;
-				if (DrinkIngredients != null && DrinkIngredients.Count > 0)
-					hit.transform.SendMessage ("GetDrink", DrinkIngredients);
-				else
-					Debug.Log ("There's no damn drink in it!");
-			}
-			else if (this.Inventory.IsChildOf (Ingredients)){
-				// Send dictionary to ClientController
-				hit.transform.SendMessage("GetDrink", new Dictionary<string, int>() {{this.Inventory.name, 1}});
-			}
-				// hit.transform.SendMessage ("GetDrink", hit.transform);
+			this.interactClient ();
 		}
 		// Empty Equipment if it hits the sink
 		if(hit.transform.gameObject.name.Equals("Sink")) {
-			if(this.Inventory.IsChildOf(Equipment)) {
-				this.Inventory.GetComponent<DrinkController> ().EmptyEquipment ();
-			}
+			this.emptyEquipment ();
 		}
 	}
 
-	void DropItem() {
+	/*
+	 * Raycast hits Equipment
+	 */
+	private void interactEquipment() {
+		// If nothing in Inventory or other Equipment, pickup this!
+		if (this.Inventory == null || this.Inventory.IsChildOf(Equipment))
+			this.Inventory = hit.transform;
+		Ui.ReceiveItem (this.Inventory.name);
+		// If Ingredient in Inventory, mix it!
+		if(this.Inventory.IsChildOf(Ingredients)) {
+			// TODO
+			Dictionary<string, int> DrinkIngredients = hit.transform.gameObject.GetComponent<DrinkController> ().DrinkIngredients;
+			foreach(var item in DrinkIngredients) {
+				Debug.Log (item.Key + " : " + item.Value);
+			}
+			hit.transform.SendMessage ("AddIngredient", Inventory);
+		}		
+	}
+
+	/*
+	 * Raycast hits Client
+	 */
+	private void interactClient() {
+		if (this.Inventory == null) {
+			Debug.Log ("Do you want something from me?");
+		}
+		else if (this.Inventory.IsChildOf (Equipment)) {
+			Dictionary<string, int> DrinkIngredients = Inventory.GetComponent<DrinkController> ().DrinkIngredients;
+			if (DrinkIngredients != null && DrinkIngredients.Count > 0)
+				hit.transform.SendMessage ("GetDrink", DrinkIngredients);
+			else
+				Debug.Log ("There's no damn drink in it!");
+		}
+		else if (this.Inventory.IsChildOf (Ingredients)){
+			// Send dictionary to ClientController
+			hit.transform.SendMessage("GetDrink", new Dictionary<string, int>() {{this.Inventory.name, 1}});
+		}		
+	}
+
+	/*
+	 * Raycast hits Ingredient
+	 */
+	private void pickupIngredient() {
+		this.Inventory = hit.transform;
+		Ui.ReceiveItem (this.Inventory.name);		
+	}
+		
+	/*
+	 * Drop item: Clear Inventory
+	 */
+	private void dropItem() {
 		Inventory = null;
 		Ui.ReceiveItem (null);
+	}
+
+	/*
+	 * Empty Equipment: Clear DrinkIngredients out of Equipment
+	 */
+	private void emptyEquipment() {
+		if(this.Inventory.IsChildOf(Equipment)) {
+			this.Inventory.GetComponent<DrinkController> ().EmptyEquipment ();
+		}		
 	}
 }
