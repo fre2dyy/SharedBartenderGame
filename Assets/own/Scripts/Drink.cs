@@ -17,6 +17,8 @@ public class Drink : MonoBehaviour {
 
 	public string Name;
 	public Dictionary<string, int> Ingredients;
+
+	// Basic ingredients like "Cola" or "Beer" always have value 1
 	private static Dictionary<string, Dictionary<string, int>> drinkList = new Dictionary<string, Dictionary<string, int>>() {
 		{"Beer", new Dictionary<string, int> {{"Beer", 1}}},
 		{"Cola", new Dictionary<string, int> {{"Cola", 1}}},

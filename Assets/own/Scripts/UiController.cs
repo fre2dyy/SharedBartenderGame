@@ -68,7 +68,6 @@ public class UiController : MonoBehaviour {
 	public void ReceiveMoney(int cash) {
 		this.moneyPay += cash;
 		this.moneyText = this.moneyPay + " $";
-		Debug.Log (this.moneyPay);
 		Money.text = this.moneyText;
 	}
 

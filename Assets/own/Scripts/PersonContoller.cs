@@ -60,7 +60,7 @@ public class PersonContoller : MonoBehaviour {
 	void Interact() {
 		// If click on ingredient always replace inventory with it
 		if (hit.transform.IsChildOf (Ingredients)) {
-			this.pickupIngredient ();
+			this.pickupItem ();
 		}
 
 		// If hit Equipment
@@ -82,45 +82,30 @@ public class PersonContoller : MonoBehaviour {
 	 */
 	private void interactEquipment() {
 		// If nothing in Inventory or other Equipment, pickup this!
-		if (this.Inventory == null || this.Inventory.IsChildOf(Equipment))
-			this.Inventory = hit.transform;
-		Ui.ReceiveItem (this.Inventory.name);
+		if (this.Inventory == null || this.Inventory.IsChildOf (Equipment))
+			this.pickupItem ();
+
 		// If Ingredient in Inventory, mix it!
-		if(this.Inventory.IsChildOf(Ingredients)) {
-			// TODO
-			Dictionary<string, int> DrinkIngredients = hit.transform.gameObject.GetComponent<DrinkController> ().DrinkIngredients;
-			foreach(var item in DrinkIngredients) {
-				Debug.Log (item.Key + " : " + item.Value);
-			}
+		if(this.Inventory.IsChildOf(Ingredients)) 
 			hit.transform.SendMessage ("AddIngredient", Inventory);
-		}		
 	}
 
 	/*
 	 * Raycast hits Client
 	 */
 	private void interactClient() {
-		if (this.Inventory == null) {
-			Debug.Log ("Do you want something from me?");
+		if (this.Inventory != null) {
+			hit.transform.SendMessage ("GetDrink", this.Inventory);
 		}
-		else if (this.Inventory.IsChildOf (Equipment)) {
-			Dictionary<string, int> DrinkIngredients = Inventory.GetComponent<DrinkController> ().DrinkIngredients;
-			if (DrinkIngredients != null && DrinkIngredients.Count > 0)
-				hit.transform.SendMessage ("GetDrink", DrinkIngredients);
-			else
-				Debug.Log ("There's no damn drink in it!");
+		else {
+			hit.transform.SendMessage ("SmallTalk");			
 		}
-		else if (this.Inventory.IsChildOf (Ingredients)){
-			// Send dictionary to ClientController
-			hit.transform.SendMessage("GetDrink", new Dictionary<string, int>() {{this.Inventory.name, 1}});
-			this.dropItem ();
-		}		
 	}
 
 	/*
 	 * Raycast hits Ingredient
 	 */
-	private void pickupIngredient() {
+	private void pickupItem() {
 		this.Inventory = hit.transform;
 		Ui.ReceiveItem (this.Inventory.name);		
 	}

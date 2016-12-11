@@ -26,8 +26,6 @@ public class DrinkController : MonoBehaviour {
 			this.DrinkIngredients [Ingredient.name] += 2;
 		else
 			this.DrinkIngredients.Add (Ingredient.name, 2);
-
-		Debug.Log (this.DrinkIngredients[Ingredient.name]);
 	}
 
 	/*

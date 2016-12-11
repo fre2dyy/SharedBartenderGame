@@ -22,19 +22,39 @@ public class ClientController : MonoBehaviour {
 	
 	}
 
+	void GetDrink(Transform Drink) {
+		bool isEquipment = Drink.IsChildOf (GameObject.Find ("Equipment").transform);
+		if(isEquipment) {
+			Dictionary<string, int> DrinkIngredients = Drink.GetComponent<DrinkController> ().DrinkIngredients;
+			if (DrinkIngredients != null && DrinkIngredients.Count > 0) {
+				this.TakeDrink (DrinkIngredients);
+			} else {
+				Debug.Log ("There's no damn drink in it!");
+			}
+		} else {
+			this.TakeDrink(new Dictionary<string, int> () { { Drink.name, 1 } });
+		}
+	}
+
 	/*
 	 * Will be called when Barkeeper gives a Drink to the client
+	 * 
+	 * @return bool: RequestMatch
 	 */
-	void GetDrink(Dictionary<string, int> receivedDrink) {
+	bool TakeDrink(Dictionary<string, int> Mix) {
 		this.RequestMatch = false;
 		// Check if Ingredients from DrinkController match Ingredients of requested Drink
-		this.rateMix(receivedDrink);
+		int rate = this.rateMix(Mix);
+		Debug.Log (rate);
+
 		if (this.RequestMatch) {
 			Ui.ReceiveMoney (10);
 			Ui.ReceiveChat(this.name + ": Thank you, sir! :)\n");
 			GenerateRequest ();
+			return true;
 		} else {
 			Ui.ReceiveChat(this.name + ": That was not what I've ordered! :(\n");
+			return false;
 		}
 	}
 
@@ -47,27 +67,48 @@ public class ClientController : MonoBehaviour {
 
 	/*
 	 * Rate Mix: Check ingredients and amount
+	 * 
+	 * Maximum amount of stars also depends also on complexity of drink (number of total ingredients)
+	 * Basic ingredients (Cola, Beer...) never can be exact in amount. In this way thay can't contribute
+	 * to the rating. Either they are or they aren't in the drink.
+	 * 
+	 * @return rate: 0 to 5
 	 */ 
-	private int rateMix(Dictionary<string, int> receivedDrink) {
+	private int rateMix(Dictionary<string, int> Mix) {
+		int rate = 0;
 		// Generate ingredient list from request by Drink()
 		Drink targetDrink = new Drink(this.Request);
+
+		// If list of ingredients missmatches
+		if (Mix.Count != targetDrink.Ingredients.Count) {
+			this.RequestMatch = false;
+			return 0;
+		}
+		
 		// Iterate over targetDrink
 		foreach(var item in targetDrink.Ingredients) {
 			int amount;
+
 			// If ingredient is in Shaker
-			if (receivedDrink.TryGetValue (item.Key, out amount)) {
+			if (Mix.TryGetValue (item.Key, out amount)) {
 				this.RequestMatch = true;
+				// Rate up if amount is exact
+				if (amount == item.Value)
+					rate++;
 			} else {
 				this.RequestMatch = false;
 				break;
 			}
 		}
-		if (receivedDrink.Count != targetDrink.Ingredients.Count)
-			this.RequestMatch = false;
-		return 0;
+		
+		return rate;
 	}
 
 	void AssessSatisfaction() {
 		
+	}
+
+	void SmallTalk() {
+		Debug.Log ("Do you want something from me?");
 	}
 }
