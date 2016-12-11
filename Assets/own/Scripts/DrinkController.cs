@@ -29,4 +29,12 @@ public class DrinkController : MonoBehaviour {
 
 		Debug.Log (this.DrinkIngredients[Ingredient.name]);
 	}
+
+	/*
+	 * Empty Equipment
+	 */
+	public void EmptyEquipment() {
+		this.DrinkIngredients.Clear();
+		Debug.Log (this.DrinkIngredients);
+	}
 }
