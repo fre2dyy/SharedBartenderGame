@@ -113,6 +113,7 @@ public class PersonContoller : MonoBehaviour {
 		else if (this.Inventory.IsChildOf (Ingredients)){
 			// Send dictionary to ClientController
 			hit.transform.SendMessage("GetDrink", new Dictionary<string, int>() {{this.Inventory.name, 1}});
+			this.dropItem ();
 		}		
 	}
 

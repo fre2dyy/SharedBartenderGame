@@ -27,17 +27,8 @@ public class ClientController : MonoBehaviour {
 	 */
 	void GetDrink(Dictionary<string, int> receivedDrink) {
 		this.RequestMatch = false;
-		Drink targetDrink = new Drink(this.Request);
 		// Check if Ingredients from DrinkController match Ingredients of requested Drink
-		foreach(var item in targetDrink.Ingredients) {
-			int amount;
-			if (receivedDrink.TryGetValue (item.Key, out amount)) {
-				this.RequestMatch = true;
-			} else {
-				this.RequestMatch = false;
-				break;
-			}
-		}
+		this.rateMix(receivedDrink);
 		if (this.RequestMatch) {
 			Ui.ReceiveMoney (10);
 			Ui.ReceiveChat(this.name + ": Thank you, sir! :)\n");
@@ -54,6 +45,29 @@ public class ClientController : MonoBehaviour {
 		Ui.ReceiveChat (this.name + ": I would like to have a " + this.Request + "\n");
 	}
 
+	/*
+	 * Rate Mix: Check ingredients and amount
+	 */ 
+	private int rateMix(Dictionary<string, int> receivedDrink) {
+		// Generate ingredient list from request by Drink()
+		Drink targetDrink = new Drink(this.Request);
+		// Iterate over targetDrink
+		foreach(var item in targetDrink.Ingredients) {
+			int amount;
+			// If ingredient is in Shaker
+			if (receivedDrink.TryGetValue (item.Key, out amount)) {
+				this.RequestMatch = true;
+			} else {
+				this.RequestMatch = false;
+				break;
+			}
+		}
+		if (receivedDrink.Count != targetDrink.Ingredients.Count)
+			this.RequestMatch = false;
+		return 0;
+	}
+
 	void AssessSatisfaction() {
+		
 	}
 }
