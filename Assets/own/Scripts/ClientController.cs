@@ -19,20 +19,20 @@ public class ClientController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
 
+	}
+		
 	void GetDrink(Transform Drink) {
 		bool isEquipment = Drink.IsChildOf (GameObject.Find ("Equipment").transform);
 		if(isEquipment) {
-			Dictionary<string, int> DrinkIngredients = Drink.GetComponent<DrinkController> ().DrinkIngredients;
+			Dictionary<string, decimal> DrinkIngredients = Drink.GetComponent<DrinkController> ().DrinkIngredients;
 			if (DrinkIngredients != null && DrinkIngredients.Count > 0) {
 				this.TakeDrink (DrinkIngredients);
 			} else {
 				Debug.Log ("There's no damn drink in it!");
 			}
 		} else {
-			this.TakeDrink(new Dictionary<string, int> () { { Drink.name, 1 } });
+			this.TakeDrink(new Dictionary<string, decimal> () { { Drink.name, 200m } });
 		}
 	}
 
@@ -41,7 +41,7 @@ public class ClientController : MonoBehaviour {
 	 * 
 	 * @return bool: RequestMatch
 	 */
-	bool TakeDrink(Dictionary<string, int> Mix) {
+	bool TakeDrink(Dictionary<string, decimal> Mix) {
 		this.RequestMatch = false;
 		// Check if Ingredients from DrinkController match Ingredients of requested Drink
 		int rate = this.rateMix(Mix);
@@ -74,7 +74,7 @@ public class ClientController : MonoBehaviour {
 	 * 
 	 * @return rate: 0 to 5
 	 */ 
-	private int rateMix(Dictionary<string, int> Mix) {
+	private int rateMix(Dictionary<string, decimal> Mix) {
 		int rate = 0;
 		// Generate ingredient list from request by Drink()
 		Drink targetDrink = new Drink(this.Request);
@@ -87,7 +87,7 @@ public class ClientController : MonoBehaviour {
 		
 		// Iterate over targetDrink
 		foreach(var item in targetDrink.Ingredients) {
-			int amount;
+			decimal amount;
 
 			// If ingredient is in Shaker
 			if (Mix.TryGetValue (item.Key, out amount)) {
@@ -100,7 +100,7 @@ public class ClientController : MonoBehaviour {
 				break;
 			}
 		}
-		
+
 		return rate;
 	}
 
