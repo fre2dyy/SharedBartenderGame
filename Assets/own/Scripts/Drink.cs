@@ -25,7 +25,7 @@ public class Drink : MonoBehaviour {
 		{"Cola", new Dictionary<string, decimal> {{"Cola", 200.0m}}},
 		{"Diesel", new Dictionary<string, decimal> {{"Beer", 100.0m}, {"Cola", 100.0m}}},
 		{"Cuba Libre", new Dictionary<string, decimal> {{"Cola", 100.0m}, {"Schnapps", 60.0m}, {"Lemon", 0.5m}}},
-		{"Sex on the Beach", new Dictionary<string, decimal> {{"Cola", 100.0m}, {"Schnapps", 60.0m}}}
+		{"Sex on the Beach", new Dictionary<string, decimal> { {"Schnapps", 40.0m}, {"Orange", 40.0m}, {"Pineapple", 20.0m}, {"Grenadine", 10.0m}}}
 	};
 
 	public static string[] GetDrinkList() {

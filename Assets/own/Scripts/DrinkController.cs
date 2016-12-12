@@ -23,9 +23,11 @@ public class DrinkController : MonoBehaviour {
 		decimal tmp;
 		// Add a shot
 		if (this.DrinkIngredients.TryGetValue (Ingredient.name, out tmp))
-			this.DrinkIngredients [Ingredient.name] += 2;
+			this.DrinkIngredients [Ingredient.name] += 20;
 		else
-			this.DrinkIngredients.Add (Ingredient.name, 2);
+			this.DrinkIngredients.Add (Ingredient.name, 20);
+
+		Debug.Log ("In Shaker:" + this.DrinkIngredients [Ingredient.name]);
 	}
 
 	/*

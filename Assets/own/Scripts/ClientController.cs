@@ -45,7 +45,7 @@ public class ClientController : MonoBehaviour {
 		this.RequestMatch = false;
 		// Check if Ingredients from DrinkController match Ingredients of requested Drink
 		int rate = this.rateMix(Mix);
-		Debug.Log (rate);
+		Debug.Log ("Drink Rating: " + rate);
 
 		if (this.RequestMatch) {
 			Ui.ReceiveMoney (10);
@@ -100,7 +100,6 @@ public class ClientController : MonoBehaviour {
 				break;
 			}
 		}
-
 		return rate;
 	}
 
