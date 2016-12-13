@@ -1,7 +1,7 @@
 ## README ##
 
 ## Members ##
-- Kai Jurgeit
+- Kai Jurgeit @Agent49
 
 
 ## 1. Warum Git? ##
@@ -25,7 +25,7 @@ ACHTUNG: "- $ cd ~\mySharedProject" wechselt in betreffenden Ordner und hängt vo
 - $ git init
 - $ git remote add origin https://github.com/Agent49/SharedBartenderGame.git
 - $ git pull origin master
-- Eintrag in README.md (in dieser Datei), dein Name unter "Members"
+- Eintrag in README.md (in dieser Datei, unter ~\mySharedProject), dein Name unter "Members"
 - $ git add *
 - $ git commit -m "My inital commit"
 - $ git push -u origin master
