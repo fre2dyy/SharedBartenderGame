@@ -2,22 +2,23 @@
 
 ## Members ##
 - Kai Jurgeit @Agent49
+- Tobias Krueger @fre2dyy
 
 
 ## 1. Warum Git? ##
 
-Git ist der Shit unter den Version Controll Systems (VCS) und wird von den allermeisten Software-Buden genutzt. Mit Git ersparst du dir das Anlegen von "myProject_version01", "myProject_version02" usw. da Git jeden Bearbeitungsschritt den du registrierst im Verlauf dokumentiert und nur die Differenz zum jeweils voherigen abspeichert. Dadurch kann man beliebig viel und wesentlich kontrollierter "Rückgängig machen". Des Weiteren ist es hierdurch erst möglich, dass praktisch unendlich viele Entwickler am gleichen Projekt arbeiten, ohne etwas zu Zerstören. Git kann noch viel mehr, aber dafür konsultiere bitte die Suchmaschine deine (Nicht-)Vertrauens.
-Konkret in unserem Fall ergibt sich darüber hinaus der Vorteil, dass ein gewisses Maß an Dokumentation, die ja zu 25% in die Endnote einfließt, durch Git quasi automatisch gegeben ist.
+Git ist der Shit unter den Version Controll Systems (VCS) und wird von den allermeisten Software-Buden genutzt. Mit Git ersparst du dir das Anlegen von "myProject_version01", "myProject_version02" usw. da Git jeden Bearbeitungsschritt den du registrierst im Verlauf dokumentiert und nur die Differenz zum jeweils voherigen abspeichert. Dadurch kann man beliebig viel und wesentlich kontrollierter "RÃ¼ckgÃ¤ngig machen". Des Weiteren ist es hierdurch erst mÃ¶glich, dass praktisch unendlich viele Entwickler am gleichen Projekt arbeiten, ohne etwas zu ZerstÃ¶ren. Git kann noch viel mehr, aber dafÃ¼r konsultiere bitte die Suchmaschine deine (Nicht-)Vertrauens.
+Konkret in unserem Fall ergibt sich darÃ¼ber hinaus der Vorteil, dass ein gewisses MaÃŸ an Dokumentation, die ja zu 25% in die Endnote einflieÃŸt, durch Git quasi automatisch gegeben ist.
 
 
 ## 2. Das Setup ##
 
-1. Unity 5.5 öffnen (ggf. Version 5.5 vorher installieren)
+1. Unity 5.5 Ã¶ffnen (ggf. Version 5.5 vorher installieren)
 2. Projekt erstellen (im Folgenden "mySharedProject" genannt, gleichzeitig Ordner)
-3. Unity schließen
-4. ~\mySharedProject\ProjectSettings löschen
-5. git CMD öffnen, folgendes eingeben (nur das was auf "$" folgt):
-ACHTUNG: "- $ cd ~\mySharedProject" wechselt in betreffenden Ordner und hängt von Win, Linux, Mac usw. ab
+3. Unity schlieÃŸen
+4. ~\mySharedProject\ProjectSettings lÃ¶schen
+5. git CMD Ã¶ffnen, folgendes eingeben (nur das was auf "$" folgt):
+ACHTUNG: "- $ cd ~\mySharedProject" wechselt in betreffenden Ordner und hÃ¤ngt von Win, Linux, Mac usw. ab
 
 - $ git config --global user.name "John Doe"
 - $ git config --global user.email johndoe@example.com
@@ -41,15 +42,15 @@ Das wichtigste im workflow ist in dieser Reihenfolge:
 - $ git checkout -b "mybranch"
 
 HINWEIS:
-Um Konflikte zwischen Änderungen zu vermeiden, am besten immer regelmäßig einen "pull" vor der Änderung und einen commit nach der Änderung.
+Um Konflikte zwischen Ã„nderungen zu vermeiden, am besten immer regelmÃ¤ÃŸig einen "pull" vor der Ã„nderung und einen commit nach der Ã„nderung.
 
 
 ## 4. Datei ohne Namen? Gitignore! ##
 
-Mit .gitignore lassen sich Ausnahmen beim tracken von files festlegen. Teilweise generiert Unity temporäre Files u.a. beim Öffnen und Schließen des Editors. Falls du noch auf weitere solcher Fälle stößt, bitte hinzufügen, vor allem, wenn sie sich nur auf deinem PC befinden. 
+Mit .gitignore lassen sich Ausnahmen beim tracken von files festlegen. Teilweise generiert Unity temporÃ¤re Files u.a. beim Ã–ffnen und SchlieÃŸen des Editors. Falls du noch auf weitere solcher FÃ¤lle stÃ¶ÃŸt, bitte hinzufÃ¼gen, vor allem, wenn sie sich nur auf deinem PC befinden. 
 Eigentlich sollte alles sonst soweit in den folgenden Dateien untergebracht sein:
 - .gitignore
 
 ## 5. Weiteres in Bezug auf Unity und Git ##
-Unity arbeitet viel mit binaries, die in Versionskontrollsystemen (VCS) Schwierigkeiten bereiten können. Deswegen empfielt es sich vor Aufsetzen (!) eines Repositories folgende Anleitung zu befolgen:
+Unity arbeitet viel mit binaries, die in Versionskontrollsystemen (VCS) Schwierigkeiten bereiten kÃ¶nnen. Deswegen empfielt es sich vor Aufsetzen (!) eines Repositories folgende Anleitung zu befolgen:
 http://stackoverflow.com/questions/21573405/how-to-prepare-a-unity-project-for-git
